@@ -58,7 +58,7 @@ has() {
 
 log() {
     # The 'log()' function handles the printing of information.
-    # In 'pfetch' (and 'neofetch'!) the printing of the ascii art and info
+    # In 'phifetch' (and 'neofetch'!) the printing of the ascii art and info
     # happen independently of each other.
     #
     # The size of the ascii art is stored and the ascii is printed first.
@@ -109,6 +109,7 @@ log() {
     # $[1]
     #
     # $[6] /home/goldie $
+
 
     # End here if no data was found.
     [ "$2" ] || return
