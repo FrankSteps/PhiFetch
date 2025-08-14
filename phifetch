@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# pfetch - Simple POSIX sh fetch script.
+# phifetch - Simple POSIX sh fetch script.
 
 # Wrapper around all escape sequences used by pfetch to allow for
 # greater control over which sequences are used (if any at all).
