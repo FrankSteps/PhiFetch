@@ -4,6 +4,7 @@
 
 # Wrapper around all escape sequences used by pfetch to allow for
 # greater control over which sequences are used (if any at all).
+
 esc() {
     case $1 in
         CUU) e="${esc_c}[${2}A" ;; # cursor up
@@ -159,6 +160,7 @@ log() {
     info_height=$((${info_height:-0} + 1))
 }
 
+
 get_title() {
     # Username is retrieved by first checking '$USER' with a fallback
     # to the 'id -un' command.
@@ -200,10 +202,15 @@ get_os() {
     #
     # On first run, this function displays _nothing_, only on the second
     # invocation is 'log()' called.
-    [ "$distro" ] && {
+
+    [ "$distro"] && {
         log os "$distro" >&6
         return
-    }
+   }
+
+	#distro="redhat"  # teste
+    #log os "$distro" >&6
+    #return
 
     case $os in
         (Linux*)
@@ -1175,6 +1182,35 @@ get_ascii() {
 			EOF
         ;;
 
+        ([Cc]achy[Oo][Ss]*)
+            read_ascii 4 <<-EOF
+				${c6}    ______
+				${c6}   / ____/  @
+				${c4}  / /     _
+				${c4} / /     (_)  __
+				${c4} \ \         /  \\
+				${c5}  \ \_______ \__/
+				${c5}   \________\\
+			EOF
+        ;;
+
+		([Cc]hrome[Oo][Ss]*)
+            read_ascii 4 <<-EOF
+				${c1}         _____
+				${c1}     .-''     ''-.
+				${c2}    /${c1}\\            ${c1}\\
+				${c2}  ./  ${c1}',           ${c1}\\.
+				${c2}  |     ${c1}\\${c4},_-_,${c3},_____${c1}|
+				${c2} :|      ${c4}|   ${c4}|${c3}      |:
+				${c2}  |      ${c4}',_,'${c3}      |
+				${c2}  '\\        |${c3}      /'
+				${c2}    \\       ,${c3}     /
+				${c2}     ''-. ./${c3}  .-''
+				${c2}         ''${c3}'''
+			EOF
+        ;;
+
+
         ([Aa]rco*)
             read_ascii 4 <<-EOF
 				${c4}      /\\
@@ -1343,6 +1379,8 @@ get_ascii() {
 			EOF
         ;;
 
+
+
         ([Ff]ree[Bb][Ss][Dd]*)
             read_ascii 1 <<-EOF
 				${c1}/\\,-'''''-,/\\
@@ -1423,7 +1461,7 @@ get_ascii() {
         ([Hh]ydroOS*)
 			read_ascii 4 <<-EOF
 				${c1}╔╗╔╗──╔╗───╔═╦══╗
-				${c1}║╚╝╠╦╦╝╠╦╦═╣║║══╣
+				${c1}║╚╝╠╦╦╝╠╦╦═╣║║══╣  ║
 				${c1}║╔╗║║║╬║╔╣╬║║╠══║
 				${c1}╚╝╚╬╗╠═╩╝╚═╩═╩══╝
 				${c1}───╚═╝
@@ -1456,6 +1494,38 @@ get_ascii() {
 				${c0}   \\    /        /
 				${c0}    \\  /        /
 				${c0}     \\/________/
+			EOF
+        ;;
+
+        ([Ww]indows*)
+            read_ascii <<-EOF
+				${c4} ╔═════════╦═════════╗
+				${c4} ║         ║         ║
+				${c4} ║         ║         ║
+				${c4} ║         ║         ║
+				${c4} ║         ║         ║
+				${c4} ╠═════════╬═════════╣
+				${c4} ║         ║         ║
+				${c4} ║         ║         ║
+				${c4} ║         ║         ║
+				${c4} ║         ║         ║
+				${c4} ╚═════════╩═════════╝
+				${c4}
+			EOF
+        ;;
+
+        ([Rr]ed[Hh]at*)
+			read_ascii <<-EOF
+				${c1}
+				${c1}      .'''''''.
+				${c1}     /         \\
+				${c1}  .'/           |
+				${c1} '  ',           \\'.
+				${c1} ',   '',,       |  |
+				${c1}   '-__   '''''--   /
+				${c1}       ''--....__--'
+				${c1}
+
 			EOF
         ;;
 
@@ -1518,8 +1588,8 @@ get_ascii() {
         ;;
 
 
-        ([Ll]inux*)
-            read_ascii 4 <<-EOF
+		([Ll]inux*)
+				read_ascii 4 <<-EOF
 				${c4}    ___
 				   ${c4}(${c7}.. ${c4}|
 				   ${c4}(${c5}<> ${c4}|
@@ -1528,7 +1598,7 @@ get_ascii() {
 				${c5}_${c4}/\\ ${c7}__)${c4}/${c5}_${c4})
 				${c5}\/${c4}-____${c5}\/
 			EOF
-        ;;
+		;;
 
         ([Mm]ac[Oo][Ss]*|[Dd]arwin*)
             read_ascii 1 <<-EOF
@@ -1787,6 +1857,23 @@ get_ascii() {
 				${c2}   \__/  \__/
 			EOF
         ;;
+
+        ([Kk]ali*)
+            read_ascii 2 <<-EOF
+				${c8} -----------.
+				${c8}     ________\\   .
+				${c8}         _____'.  '.
+				${c8}              ..'''.\\
+				${c8}           ,''     :\\\\
+				${c8}           \\        \|
+				${c8}            '----._
+				${c8}                  \'.
+				${c8}                   \ ',
+				${c8}                   /  '
+				${c7} _______________________
+			EOF
+        ;;
+
 
         (*)
             # On no match of a distribution ascii art, this function calls
